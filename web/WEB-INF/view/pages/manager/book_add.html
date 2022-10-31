@@ -11,6 +11,7 @@
     <link rel="stylesheet" th:href="@{static/css/bookManger.css}" />
     <link rel="stylesheet" th:href="@{static/css/register.css}" />
     <link rel="stylesheet" th:href="@{static/css/book_edit.css}" />
+    <script th:src="@{static/script/jquery-3.6.0.min.js}"></script>
   </head>
   <body>
     <div class="header">
@@ -34,42 +35,42 @@
           <div class="form-item">
             <div>
               <label>名称:</label>
-              <input type="text" name="name" placeholder="请输入名称" />
+              <input type="text" name="name" placeholder="请输入名称" required/>
             </div>
 <!--            <span class="errMess" style="visibility: hidden;">请输入正确的名称</span>-->
           </div>
           <div class="form-item">
             <div>
               <label>价格:</label>
-              <input type="text" name="price" placeholder="请输入价格" />
+              <input type="text" name="price" placeholder="请输入价格" required/>
             </div>
 <!--            <span class="errMess">请输入正确数字</span>-->
           </div>
           <div class="form-item">
             <div>
               <label>作者:</label>
-              <input type="text" name="author" placeholder="请输入作者" />
+              <input type="text" name="author" placeholder="请输入作者" required/>
             </div>
 <!--            <span class="errMess">请输入正确作者</span>-->
           </div>
           <div class="form-item">
             <div>
               <label>销量:</label>
-              <input type="number" name="sales" placeholder="请输入销量" />
+              <input type="number" name="sales" placeholder="请输入销量" required/>
             </div>
 <!--            <span class="errMess">请输入正确销量</span>-->
           </div>
           <div class="form-item">
             <div>
               <label>库存:</label>
-              <input type="number" name="stock" placeholder="请输入库存" />
+              <input type="number" name="stock" placeholder="请输入库存" required/>
             </div>
 <!--            <span class="errMess">请输入正确库存</span>-->
           </div>
           <div class="form-item">
             <div>
               <label>图片:</label>
-              <input type="file" name="imgPath"/>
+              <input type="file" name="imgPath" required/>
             </div>
 <!--            <span class="errMess">请输入正确库存</span>-->
           </div>
