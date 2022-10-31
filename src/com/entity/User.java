@@ -5,6 +5,8 @@ public class User {
     private String userName;
     private String userPassword;
     private String email;
+    private Integer administrator;
+    private Cart cart;
 
     public User() {
     }
@@ -14,6 +16,13 @@ public class User {
         this.userName = userName;
         this.userPassword = userPassword;
         this.email = email;
+    }
+
+    public User(String userName, String userPassword, String email, Integer administrator) {
+        this.userName = userName;
+        this.userPassword = userPassword;
+        this.email = email;
+        this.administrator = administrator;
     }
 
     public Integer getUserId() {
@@ -48,6 +57,22 @@ public class User {
         this.email = email;
     }
 
+    public Integer getAdministrator() {
+        return administrator;
+    }
+
+    public void setAdministrator(Integer administrator) {
+        this.administrator = administrator;
+    }
+
+    public Cart getCart() {
+        return cart;
+    }
+
+    public void setCart(Cart cart) {
+        this.cart = cart;
+    }
+
     @Override
     public String toString() {
         return "User{" +
@@ -55,6 +80,8 @@ public class User {
                 ", userName='" + userName + '\'' +
                 ", userPassword='" + userPassword + '\'' +
                 ", email='" + email + '\'' +
+                ", administrator=" + administrator +
+                ", cart=" + cart +
                 '}';
     }
 }

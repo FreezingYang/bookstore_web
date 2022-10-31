@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" th:href="@{static/css/minireset.css}" />
+    <link rel="stylesheet" th:href="@{static/css/common.css}" />
+    <link rel="stylesheet" th:href="@{static/css/cart.css}" />
+    <link rel="stylesheet" th:href="@{static/css/bookManger.css}" />
+    <link rel="stylesheet" th:href="@{static/css/orderManger.css}" />
+    <style>
+      #retreat{
+        background: red;
+        height: 100%;
+        line-height: 50px;
+        width: 91px;
+        text-align: center;
+        font-size: 21px;
+        color: white;
+        margin: 0 0 0 10px;
+        cursor: pointer;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="header">
+      <div class="w">
+        <div class="header-left">
+          <a href="/index.do">
+            <img th:src="@{static/img/logo.gif}" alt=""
+          /></a>
+          <h1>订单管理系统</h1>
+        </div>
+        <div class="header-right">
+          <a th:href="@{/manage(librarian='findAllBook')}" >图书管理</a>
+          <a th:href="@{order(operate='findAll')}">订单管理</a>
+          <a href="/index.do" class="gohome">返回商城</a>
+        </div>
+      </div>
+    </div>
+    <div class="list">
+      <form th:action="@{order(operate='updateOrder')}" method="post">
+      <div class="w">
+        <table>
+          <thead>
+            <tr>
+              <th>图书编号</th>
+              <th>图片</th>
+              <th>图书名称</th>
+              <th>购买数量</th>
+              <th>总金额</th>
+              <th>订单编号</th>
+              <th>订单状态</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr th:each="item: ${orderDetail}">
+              <td th:text="${item.bookId}"></td>
+              <td><img th:src="${item.imgPath}" alt=""></td>
+              <td th:text="${item.bookName}"></td>
+              <td th:text="${item.bookCount}">90.00</td>
+              <td th:text="${item.amount}">88</td>
+              <td th:text="${item.orderId}"></td>
+              <td th:if="${item.orderStatus} == 0">未发货</td>
+              <td th:if="${item.orderStatus} == 1">正在配货</td>
+              <td th:if="${item.orderStatus} == 2">已发货</td>
+              <input id="orderId" type="hidden" name="orderId" th:value="${item.orderId}">
+            </tr>
+          </tbody>
+        </table>
+        <div class="footer">
+          <label for="">修改订单发货状态：</label>
+          <select name="orderStatus" id="">
+            <option value="0">未发货</option>
+            <option value="1">正在配货</option>
+            <option value="2">已发货</option>
+          </select>
+          <input type="submit" value="确定" style="margin: 0 20px">
+          <div id="retreat">退货</div>
+        </div>
+      </div>
+      </form>
+    </div>
+    <div class="bottom">
+      <div class="w">
+        <div class="top">
+          <ul>
+            <li>
+              <a href="">
+                <img src="../../static/img/bottom1.png" alt="" />
+                <span>售后服务</span>
+              </a>
+            </li>
+            <li>
+              <a href="">
+                <img src="../../static/img/bottom.png" alt="" />
+                <span>物流服务</span>
+              </a>
+            </li>
+            <li>
+              <a href="">
+                <img src="../../static/img/bottom2.png" alt="" />
+                <span>联系电话</span>
+              </a>
+            </li>
+          </ul>
+        </div>
+        <div class="content">
+         
+        </div>
+      </div>
+      <div class="down">
+        Deer.Copyright ©2022
+      </div>
+    </div>
+    <script>
+      let orderId = document.getElementById("orderId")
+      let retreat = document.getElementById("retreat")
+      retreat.onclick = function () {
+        window.location.href = "/order?operate=deleteOrder&orderId="+orderId.value
+      }
+    </script>
+  </body>
+</html>

@@ -16,29 +16,39 @@
 </style>
 </head>
 <body>
-		<div id="header">
-				<a th:href="@{bookstore(method='index')}">
-					<img class="logo_img" alt="" th:src="@{static/img/logo.gif}" />
-				</a>
-				<span class="wel_word"></span>
-				<div>
-					<span>欢迎<span class="um_span">会员</span>光临Deer书城</span>
-					<a th:href="@{bookstore(method='Order')}">我的订单</a>
-					<a th:href="@{bookstore(method='index')}">注销</a>&nbsp;&nbsp;
-					<a th:href="@{bookstore(method='index')}">返回</a>
-				</div>
+	<div id="header">
+		<a href="/index.do">
+			<img class="logo_img" alt="" th:src="@{static/img/logo.gif}" />
+		</a>
+		<span class="wel_word"></span>
+		<div>
+			<span>欢迎<span class="um_span">会员</span>光临Deer书城</span>
 		</div>
-		
-		<div id="main">
-		
-			<h1>注册成功! <a th:href="@{bookstore(method='index')}">转到主页</a></h1>
-	
-		</div>
-		
-		<div id="bottom">
-			<span>
-				Deer.Copyright &copy;2022
-			</span>
-		</div>
+	</div>
+
+	<div id="main">
+
+		<h1>注册成功! <span id="time" style="color: red">3</span>秒后 <a href="/index.do">转到主页</a></h1>
+
+	</div>
+
+	<div id="bottom">
+		<span>
+			Deer.Copyright &copy;2022
+		</span>
+	</div>
+	<script>
+		var oSp = document.getElementById("time")
+
+		var s = 3
+		function timer(){
+			s --
+			if(s == 0){
+				location.href = "/index.do"
+			}
+			oSp.innerText = s
+		}
+		time = setInterval(timer, 1000)
+	</script>
 </body>
 </html>

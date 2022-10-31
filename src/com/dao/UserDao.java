@@ -3,12 +3,13 @@ package com.dao;
 import com.entity.User;
 
 public interface UserDao {
-
-
     // 用户注册方法
-    int addBookUser(User bookUser);
+    void addBookUser(User user);
 
     // 通过用户名称和密码查询用户的方法
-    int findUserByNameAndPassword(String userName,String password);
+    User findUserByNameAndPassword(String userName, String password);
+
+    // 通过用户名称查询用户的方法
+    int findUserByName(String userName);
 
 }

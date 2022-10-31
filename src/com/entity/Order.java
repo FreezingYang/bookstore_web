@@ -1,30 +1,32 @@
 package com.entity;
 
 import java.math.BigDecimal;
+import java.util.Date;
 
 public class Order {
-    private Integer orderId;
+    private String orderId;
     private Integer orderCount;
-    private BigDecimal orderAccount;
-    private Integer userID;
+    private BigDecimal orderAmount;
+    private Integer userId;
     private Integer orderStatus;
+    private Date createTime;
 
     public Order() {
     }
 
-    public Order(Integer orderId, Integer orderCount, BigDecimal orderAccount, Integer userID, Integer orderStatus) {
+    public Order(String orderId, Integer orderCount, BigDecimal orderAmount, Integer userId, Integer orderStatus) {
         this.orderId = orderId;
         this.orderCount = orderCount;
-        this.orderAccount = orderAccount;
-        this.userID = userID;
+        this.orderAmount = orderAmount;
+        this.userId = userId;
         this.orderStatus = orderStatus;
     }
 
-    public Integer getOrderId() {
+    public String getOrderId() {
         return orderId;
     }
 
-    public void setOrderId(Integer orderId) {
+    public void setOrderId(String orderId) {
         this.orderId = orderId;
     }
 
@@ -36,20 +38,20 @@ public class Order {
         this.orderCount = orderCount;
     }
 
-    public BigDecimal getOrderAccount() {
-        return orderAccount;
+    public BigDecimal getOrderAmount() {
+        return orderAmount;
     }
 
-    public void setOrderAccount(BigDecimal orderAccount) {
-        this.orderAccount = orderAccount;
+    public void setOrderAmount(BigDecimal orderAmount) {
+        this.orderAmount = orderAmount;
     }
 
     public Integer getUserID() {
-        return userID;
+        return userId;
     }
 
-    public void setUserID(Integer userID) {
-        this.userID = userID;
+    public void setUserId(Integer userId) {
+        this.userId = userId;
     }
 
     public Integer getOrderStatus() {
@@ -60,14 +62,23 @@ public class Order {
         this.orderStatus = orderStatus;
     }
 
+    public Date getCreateTime() {
+        return createTime;
+    }
+
+    public void setCreateTime(Date createTime) {
+        this.createTime = createTime;
+    }
+
     @Override
     public String toString() {
         return "Order{" +
-                "orderId=" + orderId +
+                "orderId='" + orderId + '\'' +
                 ", orderCount=" + orderCount +
-                ", orderAccount=" + orderAccount +
-                ", userID=" + userID +
+                ", orderAmount=" + orderAmount +
+                ", userId=" + userId +
                 ", orderStatus=" + orderStatus +
+                ", createTime=" + createTime +
                 '}';
     }
 }

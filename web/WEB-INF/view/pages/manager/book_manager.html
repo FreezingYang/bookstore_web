@@ -4,6 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
+    <script th:src="@{static/script/jquery-3.6.0.min.js}"></script>
     <link rel="stylesheet" th:href="@{static/css/minireset.css}" />
     <link rel="stylesheet" th:href="@{static/css/common.css}" />
     <link rel="stylesheet" th:href="@{static/css/cart.css}" />
@@ -13,22 +14,20 @@
     <div class="header">
       <div class="w">
         <div class="header-left">
-          <a th:href="@{bookstore(method='index')}">
-            <img th:src="@{static/img/logo.gif}" alt=""
-          /></a>
+          <a href="/index.do">
+            <img th:src="@{static/img/logo.gif}" alt=""/></a>
           <h1>图书管理系统</h1>
         </div>
         <div class="header-right">
-          <a th:href="@{bookstore(method='book_manager')}" class="order">图书管理</a>
-          <a th:href="@{bookstore(method='order_manager')}">订单管理</a>
-          <a th:href="@{bookstore(method='index')}">返回商城</a>
+          <a th:href="@{order(operate='findAll')}">订单管理</a>
+          <a href="/index.do">返回商城</a>
         </div>
       </div>
     </div>
     <div class="list">
       <div class="w">
         <div class="add">
-          <a th:href="@{bookstore(method='book_edit')}">添加图书</a>
+          <a th:href="@{manage(librarian='book_add')}">添加图书</a>
         </div>
         <table>
           <thead>
@@ -43,55 +42,45 @@
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <td>
-                <img th:src="@{static/uploads/huozhe.jpg}" alt="" />
-              </td>
-              <td>活着</td>
-              <td>
-                100.00
-              </td>
-              <td>余华</td>
-              <td>200</td>
-              <td>400</td>
-              <td>
-                <a th:href="@{bookstore(method='book_edit')}">修改</a><a href="" class="del">删除</a>
-              </td>
+            <tr th:if="${#lists.isEmpty(bookList)}">
+              <td>数据库内容为空</td>
             </tr>
-            <tr>
+            <tr th:unless="${#lists.isEmpty(bookList)}" th:each="item: ${bookList}">
               <td>
-                <img th:src="@{static/uploads/huozhe.jpg}" alt="" />
+                <img th:src="${item.imgPath}" alt="" />
               </td>
-              <td>活着</td>
+              <td th:text="${item.name}">活着</td>
+              <td th:text="${item.price}">100.00</td>
+              <td th:text="${item.author}">余华</td>
+              <td th:text="${item.sales}">200</td>
+              <td th:text="${item.stock}">400</td>
               <td>
-                100.00
-              </td>
-              <td>余华</td>
-              <td>200</td>
-              <td>400</td>
-              <td>
-                <a th:src="@{static/uploads/huozhe.jpg}">修改</a><a href="" class="del">删除</a>
+                <a th:href="@{manage(librarian='book_edit', id=${item.bookId}, pageNo=${session.pageNo})}">修改</a>
+                <a th:href="@{manage(librarian='deleteBook', id=${item.bookId}, pageNo=${session.pageNo})}" class="del">删除</a>
               </td>
             </tr>
           </tbody>
         </table>
         <div class="footer">
           <div class="footer-right">
-            <div>首页</div>
-            <div>上一页</div>
+            <input type="button" class="page" value="首  页" th:onclick="|page(1)|" th:disabled="${session.pageNo==1}">
+            <input type="button" class="page" value="上一页" th:onclick="|page(${session.pageNo-1})|" th:disabled="${session.pageNo==1}">
             <ul>
-              <li class="active">1</li>
-              <li>2</li>
-              <li>3</li>
+              <li
+                th:each="item: ${session.pageList}"
+                th:class="${item == session.pageNo ? 'active pageLi' : 'pageLi'}"
+                th:text="${item}">
+              </li>
             </ul>
-            <div>下一页</div>
-            <div>末页</div>
-            <span>共10页</span>
-            <span>30条记录</span>
+            <input type="button" class="page" value="下一页" th:onclick="|page(${session.pageNo+1})|"  th:disabled="${session.pageNo==session.pageCount}">
+            <input type="button" class="page" value="尾  页" style="margin: 0 150px 0 0" th:onclick="|page(${session.pageCount})|"  th:disabled="${session.pageNo==session.pageCount}">
+            <span th:text="'共'+${session.pageCount}+'页'"></span>
+            <span th:text="${session.bookCount}+'条记录'">30条记录</span>
             <span>到第</span>
-            <input type="text" />
+            <input type="text" id="page_inp">
             <span>页</span>
-            <button>确定</button>
+            <input id="page_max" type="hidden" th:value="${session.pageCount}">
+            <button id="page_but">确定</button>
           </div>
         </div>
       </div>
@@ -128,5 +117,6 @@
         Deer.Copyright ©2022
       </div>
     </div>
+    <script th:src="@{static/js/book_manager.js}"></script>
   </body>
 </html>

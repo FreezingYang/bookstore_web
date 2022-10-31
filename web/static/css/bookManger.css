@@ -1,6 +1,7 @@
 .header-right a {
   font-size: 20px;
   color: #39987c;
+  margin: 0 5px;
 }
 .list input {
   text-align: center;
@@ -59,9 +60,9 @@
   color: #666 !important;
 }
 .list .footer-right ul li {
-  float: left;
   cursor: pointer;
   text-decoration: underline;
+  display: none;
 }
 .list .footer-right ul li:nth-child(n + 2) {
   margin-left: 10px;
@@ -70,12 +71,17 @@
   font-weight: 700;
   color: #39987c;
   font-size: 24px;
+  display: inline-block;
 }
-.list .footer-right input {
+#page_inp{
   width: 40px;
   height: 30px;
 }
-.list .footer-right button {
+.page{
+  margin: 0 5px;
+}
+
+#page_but{
   width: 60px;
   height: 30px;
   border: none;
@@ -85,3 +91,17 @@
   margin-left: 10px;
   cursor: pointer;
 }
+/*.list .footer-right input {*/
+/*  width: 40px;*/
+/*  height: 30px;*/
+/*}*/
+/*.list .footer-right button {*/
+/*  width: 60px;*/
+/*  height: 30px;*/
+/*  border: none;*/
+/*  outline: none;*/
+/*  background-color: #39987c;*/
+/*  color: #fff;*/
+/*  margin-left: 10px;*/
+/*  cursor: pointer;*/
+/*}*/

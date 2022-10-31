@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="en"  xmlns:th="http://www.thymeleaf.org">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -16,59 +16,64 @@
     <div class="header">
       <div class="w">
         <div class="header-left">
-          <a href="../../index.html">
+          <a href="/index.do">
             <img th:src="@{static/img/logo.gif}" alt=""
           /></a>
           <h1>编辑图书</h1>
         </div>
         <div class="header-right">
-          <a th:href="@{bookstore(method='book_manager')}" >图书管理</a>
-          <a th:href="@{bookstore(method='order_manager')}">订单管理</a>
-          <a th:href="@{bookstore(method='index')}">返回商城</a>
+          <a th:href="@{/manage(librarian='findAllBook')}" >图书管理</a>
+          <a th:href="@{order(operate='findAll')}">订单管理</a>
+          <a href="/index.do">返回商城</a>
         </div>
       </div>
     </div>
     <div class="login_banner">
       <div class="register_form">
-        <form action="">
+        <form th:action="@{manage(librarian='updateBook')}" method="post">
           <div class="form-item">
             <div>
+              <input type="hidden" name="bookId" th:value="${book.bookId}">
               <label>名称:</label>
-              <input type="text" placeholder="请输入名称" />
+              <input type="text" name="name" th:value="${book.name}" placeholder="请输入名称" readonly="readonly"/>
             </div>
-            <span class="errMess" style="visibility: visible;"
-              >请输入正确的名称</span
-            >
+<!--            <span class="errMess" style="visibility: hidden;">请输入正确的名称</span>-->
           </div>
           <div class="form-item">
             <div>
               <label>价格:</label>
-              <input type="number" placeholder="请输入价格" />
+              <input type="number" name="price" th:value="${book.price}" placeholder="请输入价格" />
             </div>
-            <span class="errMess">请输入正确数字</span>
+<!--            <span class="errMess">请输入正确数字</span>-->
           </div>
           <div class="form-item">
             <div>
               <label>作者:</label>
-              <input type="text" placeholder="请输入作者" />
+              <input type="text" name="author" th:value="${book.author}" placeholder="请输入作者" readonly="readonly"/>
             </div>
-            <span class="errMess">请输入正确作者</span>
+<!--            <span class="errMess">请输入正确作者</span>-->
           </div>
           <div class="form-item">
             <div>
               <label>销量:</label>
-              <input type="number" placeholder="请输入销量" />
+              <input type="number" name="sales" th:value="${book.sales}" placeholder="请输入销量" />
             </div>
-            <span class="errMess">请输入正确销量</span>
+<!--            <span class="errMess">请输入正确销量</span>-->
           </div>
           <div class="form-item">
             <div>
               <label>库存:</label>
-              <input type="number" placeholder="请输入库存" />
+              <input type="number" name="stock" th:value="${book.stock}" placeholder="请输入库存" />
             </div>
-            <span class="errMess">请输入正确库存</span>
+<!--            <span class="errMess">请输入正确库存</span>-->
           </div>
-
+          <div class="form-item">
+            <div>
+              <label>图片:</label>
+              <input type="text"  th:value="${book.imgPath}" name="imgPath" readonly="readonly"/>
+            </div>
+<!--            <span class="errMess">请输入正确库存</span>-->
+          </div>
           <button class="btn">提交</button>
         </form>
       </div>

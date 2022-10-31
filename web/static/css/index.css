@@ -252,9 +252,9 @@
   margin: 0 5px;
 }
 .books-list .list-footer ul li {
-  float: left;
   cursor: pointer;
   text-decoration: underline;
+  display: none;
 }
 .books-list .list-footer ul li:nth-child(n + 2) {
   margin-left: 10px;
@@ -263,12 +263,17 @@
   font-weight: 700;
   color: #39987c;
   font-size: 24px;
+  display: inline-block;
 }
-.books-list .list-footer input {
+#page_inp{
   width: 40px;
   height: 30px;
 }
-.books-list .list-footer button {
+.page{
+  margin: 0 5px;
+}
+
+#page_but{
   width: 60px;
   height: 30px;
   border: none;
@@ -278,6 +283,7 @@
   margin-left: 10px;
   cursor: pointer;
 }
+
 .cate {
   height: 170px;
   margin-top: 14px;

@@ -4,10 +4,12 @@
     <meta charset="UTF-8" />
     <title>网上书店登录页面</title>
     <link type="text/css" rel="stylesheet" th:href="@{static/css/style.css}" />
+    <script th:src="@{static/script/jquery-3.6.0.min.js}"></script>
+    <script th:src="@{static/script/axios.js}"></script>
   </head>
   <body>
     <div id="login_header">
-      <a th:href="@{bookstore(method='index')}">
+      <a href="/index.do">
         <img class="logo_img" alt="" th:src="@{static/img/logo.gif}" />
       </a>
     </div>
@@ -28,7 +30,6 @@
               <span class="errorMsg">请输入用户名和密码</span>
             </div>
             <div class="form">
-              <form th:action="@{bookstore(method='registSuccess')}" method="post">
                 <label>用户名称：</label>
                 <input
                   class="itxt"
@@ -54,9 +55,9 @@
                 <br />
                 <br />
                 <input type="submit" value="登录" id="sub_btn" />
-              </form>
+<!--                    <button id="sub_btn">登录</button>-->
               <div class="tit">
-                <a th:href="@{bookstore(method='Regist')}">立即注册</a>
+                <a th:href="@{bookstore(jump='Regist')}">立即注册</a>
               </div>
             </div>
           </div>
@@ -68,5 +69,36 @@
         Deer.Copyright &copy;2022
       </span>
     </div>
+    <script>
+      var userName = document.getElementById("username")
+      var password = document.getElementById("password")
+      var sub_btn = document.getElementById("sub_btn")
+
+      function selectThis(name,password) {
+          document.write("<form action=\"/login?method=findUser\" method=post name=form1  style='display: none'>");
+          document.write("<input type=hidden name=username value='"+name+"'/>");
+          document.write("<input type=hidden name=password value='"+password+"'/>");
+          document.write("</form>");
+          document.form1.submit();
+      }
+
+      sub_btn.onclick = function (){
+        var user = userName.value
+        var pass = password.value
+        var  url = '/login?method=findUser&username='+user+'&password='+pass
+
+        axios.post(url).then(resp => {
+            if(resp.data == null){
+                document.getElementsByClassName("errorMsg")[0].innerHTML = '用户名或者密码错误'
+                document.getElementsByClassName("errorMsg")[0].style.color = 'red'
+                console.log("登录失败")
+            }else {
+                selectThis(user, pass)
+            }
+        }).catch(err => {
+            console.log(err)
+        })
+      }
+    </script>
   </body>
 </html>

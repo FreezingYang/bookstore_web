@@ -1,23 +1,30 @@
 package com.entity;
 
-import java.math.BigDecimal;
-
 public class Book {
     private Integer bookId;
     private String name;
-    private BigDecimal price;
+    private Double price;
     private String author;
+    private Integer sales;
     private Integer stock;
     private String imgPath;
 
     public Book() {
     }
 
-    public Book(Integer bookId, String name, BigDecimal price, String author, Integer stock, String imgPath) {
+    public Book(Integer bookId, Double price, Integer sales, Integer stock) {
+        this.bookId = bookId;
+        this.price = price;
+        this.sales = sales;
+        this.stock = stock;
+    }
+
+    public Book(Integer bookId, String name, Double price, String author, Integer sales, Integer stock, String imgPath) {
         this.bookId = bookId;
         this.name = name;
         this.price = price;
         this.author = author;
+        this.sales = sales;
         this.stock = stock;
         this.imgPath = imgPath;
     }
@@ -38,11 +45,11 @@ public class Book {
         this.name = name;
     }
 
-    public BigDecimal getPrice() {
+    public Double getPrice() {
         return price;
     }
 
-    public void setPrice(BigDecimal price) {
+    public void setPrice(Double price) {
         this.price = price;
     }
 
@@ -52,6 +59,14 @@ public class Book {
 
     public void setAuthor(String author) {
         this.author = author;
+    }
+
+    public Integer getSales() {
+        return sales;
+    }
+
+    public void setSales(Integer sales) {
+        this.sales = sales;
     }
 
     public Integer getStock() {
@@ -77,6 +92,7 @@ public class Book {
                 ", name='" + name + '\'' +
                 ", price=" + price +
                 ", author='" + author + '\'' +
+                ", sales=" + sales +
                 ", stock=" + stock +
                 ", imgPath='" + imgPath + '\'' +
                 '}';

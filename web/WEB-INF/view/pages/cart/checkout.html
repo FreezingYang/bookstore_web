@@ -20,38 +20,28 @@
 </style>
 </head>
 <body>
-	
-<!--	<div id="header">-->
-<!--			<img class="logo_img" alt="" src="../../static/img/logo.gif" >-->
-<!--			<span class="wel_word">结算</span>-->
-<!--			<div>-->
-<!--				<span>欢迎<span class="um_span">会员</span>光临Deer书城</span>-->
-<!--				<a href="../order/order.html">我的订单</a>-->
-<!--				<a href="../../index.html">注销</a>&nbsp;&nbsp;-->
-<!--				<a href="../../index.html">返回</a>-->
-<!--			</div>-->
-<!--	</div>-->
-		<div class="header">
-			<div class="w">
-				<div class="header-left">
-					<a href="../../index.html">
-						<img src="../../static/img/logo.gif" alt=""
-						/></a>
-					<span>我的购物车</span>
+	<div class="header">
+		<div class="w">
+			<div class="header-left">
+				<a href="/index.do">
+					<img src="../../static/img/logo.gif" alt=""
+					/></a>
+				<span>我的购物车</span>
+			</div>
+			<div class="header-right">
+				<h3>欢迎<span>会员</span>光临Deer书城</h3>
+				<div class="order" style="margin: 0 10px">
+					<a th:href="@{order(operate='findOrder')}">我的订单</a>
 				</div>
-				<div class="header-right">
-					<h3>欢迎<span>会员</span>光临Deer书城</h3>
-					<div class="order"><a href="../order/order.html">我的订单</a></div>
-					<div class="destory"><a href="../../index.html">注销</a></div>
-					<div class="gohome">
-						<a href="../../index.html">返回</a>
-					</div>
+				<div class="gohome">
+					<a href="/index.do">返回</a>
 				</div>
 			</div>
 		</div>
+	</div>
 	
 	<div id="main">
-		<h1>你的订单已结算，订单号为:<span class="oid">546845626455846</span></h1>
+		<h1>你的订单已结算，订单号为:<span class="oid" th:text="${uid}">546845626455846</span></h1>
 	</div>
 
 	<div id="bottom">
@@ -59,5 +49,6 @@
 			Deer.Copyright &copy;2022
 		</span>
 	</div>
+
 </body>
 </html>

@@ -5,16 +5,12 @@
     <title>会员注册页面</title>
     <link type="text/css" rel="stylesheet" th:href="@{static/css/style.css}" />
     <link rel="stylesheet" th:href="@{static/css/register.css}" />
-    <style type="text/css">
-      .login_form {
-        height: 420px;
-        margin-top: 25px;
-      }
-    </style>
+    <script th:src="@{static/script/axios.js}"></script>
+
   </head>
   <body>
     <div id="login_header">
-      <a th:href="@{bookstore(method='index')}">
+      <a href="/index.do">
         <img class="logo_img" alt="" th:src="@{static/img/logo.gif}" />
       </a>
     </div>
@@ -22,32 +18,34 @@
     <div class="login_banner">
       <div class="register_form">
         <h1>注册会员</h1>
-        <form th:action="@{bookstore(method='registSuccess')}" method="post">
+<!--        <form th:action="@{bookstore(jump='registSuccess')}" method="post">-->
+        <form th:action="@{/login(method='addUser')}" method="post">
           <div class="form-item">
             <div>
               <label>用户名称:</label>
-              <input type="text" placeholder="请输入用户名" />
+              <input type="text" class="user_input" name="user" value="" placeholder="请输入用户名" />
             </div>
             <span class="errMess">用户名应为6~16位数组和字母组成</span>
           </div>
           <div class="form-item">
-            <div>
+            <div style="position: relative">
               <label>用户密码:</label>
-              <input type="password" placeholder="请输入密码" />
+              <input type="password" class="user_input" name="password" value="" placeholder="请输入密码" />
+              <span id="show_pass"></span>
             </div>
             <span class="errMess">密码的长度至少为8位</span>
           </div>
           <div class="form-item">
             <div>
               <label>确认密码:</label>
-              <input type="password" placeholder="请输入确认密码" />
+              <input type="password" class="user_input" name="password" value="" placeholder="请输入确认密码" />
             </div>
             <span class="errMess">密码两次输入不一致</span>
           </div>
           <div class="form-item">
             <div>
               <label>用户邮箱:</label>
-              <input type="text" placeholder="请输入邮箱" />
+              <input type="text" class="user_input" name="email" value="" placeholder="请输入邮箱" />
             </div>
             <span class="errMess">请输入正确的邮箱格式</span>
           </div>
@@ -55,8 +53,9 @@
             <div>
               <label>验证码:</label>
               <div class="verify">
-                <input type="text" placeholder="" />
-                <img th:src="@{static/img/code.bmp}" alt="" />
+                <input type="text" class="user_input" value="" placeholder="" />
+<!--                <img th:src="@{static/img/code.bmp}" alt="" />-->
+                <div id="code_div"></div>
               </div>
             </div>
             <span class="errMess">请输入正确的验证码</span>
@@ -70,5 +69,6 @@
         Deer.Copyright &copy;2022
       </span>
     </div>
+    <script th:src="@{static/js/regist.js}"></script>
   </body>
 </html>
